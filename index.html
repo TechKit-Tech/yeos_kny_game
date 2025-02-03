@@ -22,26 +22,34 @@
 
     <!-- Game Screen -->
     <div id="game-screen" class="screen hidden">
-        <h1>Game</h1>
-        <div id="objects-container">
-            <div class="object" data-id="1">🍎</div>
-            <div class="object" data-id="2">🍌</div>
-            <div class="object" data-id="3">🍇</div>
-            <div class="object" data-id="4">🍊</div>
-            <div class="object" data-id="5">🍒</div>
-        </div>
-        <div id="controls">
-            <button id="left-arrow">⬅️</button>
-            <button id="hit-btn">Hit</button>
-            <button id="right-arrow">➡️</button>
+        <div class="gamescreen">
+            <!-- <h1>Game</h1> -->
+            <div id="objects-container">
+                <div class="object" data-id="1">🍎</div>
+                <div class="object" data-id="2">🍌</div>
+                <div class="object" data-id="3">🍇</div>
+                <div class="object" data-id="4">🍊</div>
+                <div class="object" data-id="5">🍒</div>
+            </div>
+            <div>
+                <!-- <img
+                    src="https://www.freeiconspng.com/thumbs/person-icon/person-icon-person-icon-clipart-image-from-our-icon-clipart-category--9.png" /> -->
+                <div id="controls">
+                    <a id="left-arrow"><img src="./asset/arrow_left.png" /></a>
+                    <button id="hit-btn">Hit</button>
+                    <a id="right-arrow"><img src="./asset/arrow_right.png" /></a>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Prize Screen -->
     <div id="prize-screen" class="screen hidden">
-        <h1>You Won!</h1>
-        <p id="prize-text"></p>
-        <button id="play-again-btn">Play Again</button>
+        <div class="phonedialog">
+            <h1>You Won!</h1>
+            <p id="prize-text"></p>
+            <button id="play-again-btn">Play Again</button>
+        </div>
     </div>
 
     <!-- Firebase SDK -->

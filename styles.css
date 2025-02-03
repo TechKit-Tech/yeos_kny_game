@@ -41,6 +41,19 @@ body {
   font-family: 'Montserrat';
 }
 
+.gamescreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  border: 1px solid #436b25;
+  padding: 2.5%;
+  border-radius: 5%;
+  height: 70vh;
+  width: 40%;
+}
+
 .hidden {
   display: none;
 }
@@ -52,18 +65,24 @@ body {
 }
 
 .object {
-  font-size: 2rem;
+  font-size: 4rem;
   cursor: pointer;
   transition: transform 0.3s ease, border 0.3s ease;
+  animation: float 2s ease-in-out infinite, swing 3s ease-in-out infinite;
 }
 
 #controls {
   display: flex;
   gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+#controls img {
+  width: 50%;
 }
 
 button {
-  margin-top: 4%;
   padding: 10px 20px;
   font-size: 1rem;
   cursor: pointer;
@@ -101,6 +120,6 @@ button {
 }
 
 /* Apply Animation to Selected Object */
-.object.selected {
+/* .object.selected {
   animation: float 2s ease-in-out infinite, swing 3s ease-in-out infinite;
-}
+} */
