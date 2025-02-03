@@ -1,0 +1,106 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+  background-image: url('./asset/bg.jpg');
+  background-size: cover;
+  font-family: 'Montserrat' !important;
+}
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.screen .phonedialog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border: 1px solid #436b25;
+  padding: 2.5%;
+  border-radius: 5%;
+}
+
+.phonedialog input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 0.5px solid #436b25;
+  border-radius: 5px;
+  font-family: 'Montserrat';
+}
+
+.phonedialog input[type="placeholder"] {
+  font-family: 'Montserrat';
+}
+
+.hidden {
+  display: none;
+}
+
+#objects-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.object {
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, border 0.3s ease;
+}
+
+#controls {
+  display: flex;
+  gap: 20px;
+}
+
+button {
+  margin-top: 4%;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: 'Montserrat';
+  background-color: #436b25;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+}
+
+/* Floating Animation */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Swing Animation */
+@keyframes swing {
+
+  0%,
+  100% {
+    transform: rotate(-10deg);
+  }
+
+  50% {
+    transform: rotate(10deg);
+  }
+}
+
+/* Apply Animation to Selected Object */
+.object.selected {
+  animation: float 2s ease-in-out infinite, swing 3s ease-in-out infinite;
+}
