@@ -26,6 +26,8 @@ body {
   border: 1px solid #436b25;
   padding: 2.5%;
   border-radius: 5%;
+  width: 20%;
+  height: 40vh;
 }
 
 .phonedialog input {
@@ -117,6 +119,43 @@ button {
   50% {
     transform: rotate(10deg);
   }
+}
+
+
+
+@media screen and (max-width: 768px) {
+
+  body {
+    background-size: contain;
+  }
+
+  .screen .phonedialog {
+    width: 80%;
+    justify-content: space-between;
+  }
+
+  .phonedialog input {
+    width: 90%;
+  }
+
+  .gamescreen {
+    height: 60vh;
+    width: 90%;
+  }
+
+  #objects-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .object {
+    font-size: 2rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, border 0.3s ease;
+    animation: float 2s ease-in-out infinite, swing 3s ease-in-out infinite;
+  }
+
 }
 
 /* Apply Animation to Selected Object */
