@@ -1,0 +1,104 @@
+body {
+    text-align: center;
+    font-family: 'Montserrat' !important;
+    background-color: #fff;
+}
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#reference-image {
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+    margin-bottom: 10px;
+    border: 2px solid #000;
+}
+
+#progress {
+    font-size: 18px;
+    margin: 10px;
+}
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(5, 80px);
+    grid-template-rows: repeat(5, 80px);
+    gap: 1px;
+    margin: 20px auto;
+    width: max-content;
+}
+
+.tile {
+    width: 80px;
+    height: 80px;
+    background-size: 400px 400px;
+    background-position: center;
+    cursor: grab;
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#win-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border: 2px solid black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width: 768px) {
+
+    h1,
+    h2 {
+        font-size: medium;
+        margin-top: 15%;
+    }
+
+    button {
+        background-color: #f37239;
+        font-family: 'Montserrat' !important;
+        border: none;
+        color: white;
+        font-size: 18px;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    #win-popup {
+        border-radius: 10px;
+        border: none;
+        width: 80%;
+        height: 25vh;
+    }
+
+
+    .tile {
+        width: 40px;
+        height: 40px;
+        background-position: center;
+        cursor: grab;
+        border: 0.5px solid #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #game-board {
+        display: grid;
+        grid-template-columns: repeat(5, 40px);
+        grid-template-rows: repeat(5, 40px);
+        gap: 1px;
+        margin: 10px auto;
+        width: max-content;
+    }
+}

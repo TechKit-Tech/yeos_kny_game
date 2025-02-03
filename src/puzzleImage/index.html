@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5x5 Image Puzzle Game</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>5x5 Image Puzzle Game</h1>
+
+
+    <select id="image-selector">
+        <option value="https://whc.unesco.org/uploads/thumbs/site_0668_0067-750-750-20151104115852.jpg">Image 1</option>
+        <option
+            value="https://withlocals-com-res.cloudinary.com/image/upload/w_286,h_286,c_fill,g_faces,q_auto,dpr_3.0,f_auto/657ebebb96d93ca77a5b697364ef7348">
+            Image 2</option>
+        <option
+            value="https://scontent.fpnh11-1.fna.fbcdn.net/v/t39.30808-6/449701203_475865968525655_6220286142996588600_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeGYyQ7Lpc34NVM1Jcojjh82EXrZ2NEoeaERetnY0Sh5oZSk-3NRYKGhPgpgIkoXbqIrmOFkjRwYqt_nyZOC_irc&_nc_ohc=fR7492d8Y-wQ7kNvgGfkYD-&_nc_zt=23&_nc_ht=scontent.fpnh11-1.fna&_nc_gid=AcZoYT8mE8qcP-aS4z5bAl1&oh=00_AYBx32CQUArm5pyy09Icuhq4OjXoqJDT0M1lQGjvPCQ15A&oe=67A64FC1">
+            Image 3</option>
+        <option
+            value="https://scontent.fpnh11-1.fna.fbcdn.net/v/t39.30808-6/469961017_587756207336630_8979990203923310807_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeF-MBRUoXZPvxN9NLhg0abFIeEH0CEijQsh4QfQISKNCxv1HDaNFyoavdMrUZcZD_opIHSMAz1Q4eKunIxmooxm&_nc_ohc=UeauWuTXlgIQ7kNvgHqqZ1E&_nc_zt=23&_nc_ht=scontent.fpnh11-1.fna&_nc_gid=A4Dp2IS1kNl9Lckd3ooCmhp&oh=00_AYDHA7W4-cCBmkBCg3Owna6Go0J3mYeSmkQUE4GrXfsFpQ&oe=67A66DE8">
+            Image 4</option>
+    </select>
+    <hr>
+    <div id="game-container">
+        <div id="reference-image"></div>
+        <div id="progress">Progress: 0%</div>
+        <div id="game-board"></div>
+    </div>
+
+    <div id="win-popup">
+        <h2>Congratulations! You solved the puzzle!</h2>
+        <button onclick="restartGame()">Restart</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

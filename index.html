@@ -4,87 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Game</title>
+    <title>Main Screen</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="styles.css">
 
 </head>
 
 <body>
-    <!-- Register Screen -->
-    <div id="register-screen" class="screen hidden">
-        <div class="phonedialog">
-            <h1>Register</h1>
-            <input type="text" id="phone-number" placeholder="Enter your phone number">
-            <button id="register-btn">Check</button>
-        </div>
-    </div>
-
-    <!-- Game Screen -->
-    <div id="game-screen" class="screen ">
-        <div class="gamescreen">
-            <!-- <h1>Game</h1> -->
-            <div id="objects-container">
-                <div class="object" data-id="1">🍎</div>
-                <div class="object" data-id="2">🍌</div>
-                <div class="object" data-id="3">🍇</div>
-                <div class="object" data-id="4">🍊</div>
-                <div class="object" data-id="5">🍒</div>
-            </div>
-            <div>
-                <!-- <img
-                    src="https://www.freeiconspng.com/thumbs/person-icon/person-icon-person-icon-clipart-image-from-our-icon-clipart-category--9.png" /> -->
-                <div id="controls">
-                    <a id="left-arrow"><img src="./asset/arrow_left.png" /></a>
-                    <button id="hit-btn">Hit</button>
-                    <a id="right-arrow"><img src="./asset/arrow_right.png" /></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Prize Screen -->
-    <div id="prize-screen" class="screen hidden">
-        <div class="phonedialog">
-            <h1>You Won!</h1>
-            <p id="prize-text"></p>
-            <button id="play-again-btn">Play Again</button>
-        </div>
-    </div>
-
-    <!-- Firebase SDK -->
-    <!-- <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js"></script> -->
-    <!-- <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js"></script> -->
-    <!-- Replace these -->
-
-    <!-- With these -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
-
-
-        // Your Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyDJlh8_n9mAiBh1WPj0RjmdyV3ZIogHvNo",
-            authDomain: "msa-yeos-kny.firebaseapp.com",
-            projectId: "msa-yeos-kny",
-            storageBucket: "msa-yeos-kny.firebasestorage.app",
-            messagingSenderId: "566911486347",
-            appId: "1:566911486347:web:ba400bf29da91ae2a0478e",
-            measurementId: "G-2QTQ7DR5LB"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        // Make db and addDoc available globally
-        window.db = db;
-        window.addDoc = addDoc;
-        window.collection = collection;
-        window.serverTimestamp = serverTimestamp;
-    </script>
-    <script src="script.js"></script>
+    <h1>Home</h1>
+    <ul>
+        <li>
+            <a href="./src/hitthepot/index.html">Hit the Pot</a>
+        </li>
+        <li>
+            <a href="./src/puzzleImage/index.html">Puzzle Game</a>
+        </li>
+        <li>
+            <a href="./src/scratch/index.html">Scratch Game</a>
+        </li>
+    </ul>
 </body>
 
 </html>
