@@ -5,6 +5,7 @@ const progressText = document.getElementById("progress");
 const winPopup = document.getElementById("win-popup");
 let tiles = Array.from({ length: 25 }, (_, i) => i);
 let imageUrl = selector.value;
+let selectedTile = null;
 
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -29,12 +30,14 @@ function createBoard() {
         tile.style.backgroundPosition = `${x}px ${y}px`;
 
         tile.addEventListener("click", tileClick);
-        tile.addEventListener("dragstart", dragStart);
-        tile.addEventListener("dragover", dragOver);
-        tile.addEventListener("drop", drop);
+
+        // tile.addEventListener("dragstart", dragStart);
+        // tile.addEventListener("dragover", dragOver);
+        // tile.addEventListener("drop", drop);
 
         board.appendChild(tile);
     });
+
     updateProgress();
 }
 

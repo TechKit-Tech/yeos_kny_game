@@ -33,15 +33,16 @@ body {
 }
 
 .tile {
-    width: 80px;
-    height: 80px;
     background-size: 400px 400px;
     background-position: center;
-    cursor: grab;
-    border: 1px solid #000;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.selected {
+    border: 3px solid red;
 }
 
 #win-popup {
@@ -56,12 +57,24 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-@media screen and (max-width: 768px) {
+
+@media screen and (max-width: 992px) {
+    #game-board {
+        display: grid;
+        grid-template-columns: repeat(5, 100px);
+        grid-template-rows: repeat(5, 100px);
+        gap: 1px;
+        margin: 10px auto;
+        width: max-content;
+    }
+}
+
+@media screen and (max-width: 767px) {
 
     h1,
     h2 {
         font-size: medium;
-        margin-top: 15%;
+        margin-top: 5%;
     }
 
     button {
@@ -83,11 +96,9 @@ body {
 
 
     .tile {
-        width: 40px;
-        height: 40px;
         background-position: center;
         cursor: grab;
-        border: 0.5px solid #000;
+        /* border: 0.5px solid #000; */
         display: flex;
         align-items: center;
         justify-content: center;
@@ -95,8 +106,8 @@ body {
 
     #game-board {
         display: grid;
-        grid-template-columns: repeat(5, 40px);
-        grid-template-rows: repeat(5, 40px);
+        grid-template-columns: repeat(5, 65px);
+        grid-template-rows: repeat(5, 65px);
         gap: 1px;
         margin: 10px auto;
         width: max-content;
