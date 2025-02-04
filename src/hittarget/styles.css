@@ -1,0 +1,45 @@
+body {
+    text-align: center;
+    font-family: 'Montserrat' !important;
+}
+
+#game-container {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    margin: auto;
+    background-color: lightblue;
+    border: 2px solid black;
+    overflow: hidden;
+}
+
+#target {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#win-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border: 2px solid black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+button {
+    background-color: #f37239;
+    font-family: 'Montserrat' !important;
+    border: none;
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 10px;
+}

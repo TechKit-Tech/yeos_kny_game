@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tug of War</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .game-container {
+            position: relative;
+            width: 800px;
+            height: 400px;
+            margin: 20px;
+            background-color: #fff;
+            border: 2px solid #333;
+            overflow: hidden;
+        }
+
+        .team {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .left-team {
+            left: 0;
+            background-color: #ff9999;
+        }
+
+        .right-team {
+            right: 0;
+            background-color: #9999ff;
+        }
+
+        .rope {
+            position: absolute;
+            width: 10%;
+            height: 20px;
+            background-color: #654321;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: left 0.3s ease;
+        }
+
+        #startButton {
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 20px;
+        }
+
+        #countdown {
+            font-size: 48px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+
+        #tapCount {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            z-index: 3;
+        }
+
+        .rope {
+            /* Updated rope animation */
+            animation: ropeStretch 0.3s ease infinite alternate;
+        }
+
+        @keyframes ropeStretch {
+            0% {
+                transform: translate(-50%, -50%) scaleY(1);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scaleY(1.2);
+            }
+        }
+
+        .tap-area {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 80px;
+            background-color: #4CAF50;
+            border-radius: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.1s;
+        }
+
+        .tap-area:active {
+            transform: translateX(-50%) scale(0.95);
+        }
+
+        .pulse {
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: translateX(-50%) scale(1);
+            }
+
+            50% {
+                transform: translateX(-50%) scale(1.1);
+            }
+
+            100% {
+                transform: translateX(-50%) scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button id="startButton">Start Game</button>
+    <div class="game-container">
+        <div class="team left-team">CPU</div>
+        <div class="team right-team">YOU</div>
+        <div class="rope" id="rope"></div>
+        <div id="countdown"></div>
+        <div id="tapCount">Taps: 0</div>
+        <div class="tap-area pulse" id="tapArea">TAP HERE!</div>
+    </div>
+    <div id="resultModal" class="modal">
+        <h2 id="resultMessage"></h2>
+        <p>Taps: <span id="finalTaps">0</span></p>
+        <button onclick="resetGame()">Play Again</button>
+    </div>
+
+    <script>
+        let isGameActive = false;
+        let tapCount = 0;
+        let position = 50;
+        let countdownInterval;
+        let loseTimeout;
+        let botStrength = 1;
+        let botInterval;
+        let gameDuration = 5000;
+
+        const startButton = document.getElementById('startButton');
+        const countdownDisplay = document.getElementById('countdown');
+        const tapCountDisplay = document.getElementById('tapCount');
+        const rope = document.getElementById('rope');
+        const resultModal = document.getElementById('resultModal');
+
+        function startGame() {
+            startButton.disabled = true;
+            tapCount = 0;
+            position = 50;
+            rope.style.left = '50%';
+            tapCountDisplay.textContent = 'Taps: 0';
+
+            let count = 3;
+            countdownDisplay.textContent = count;
+
+            countdownInterval = setInterval(() => {
+                count--;
+                countdownDisplay.textContent = count;
+                if (count === 0) {
+                    clearInterval(countdownInterval);
+                    countdownDisplay.textContent = 'GO!';
+                    setTimeout(() => {
+                        countdownDisplay.textContent = '';
+                        isGameActive = true;
+                        startButton.style.display = 'none';
+                        loseTimeout = setTimeout(endGame, 5000);
+                    }, 1000);
+                }
+            }, 1000);
+
+            botStrength = 1;
+
+            // Start bot
+            botInterval = setInterval(() => {
+                if (!isGameActive) return;
+
+                // Dynamic bot difficulty based on position
+                const difficulty = 1 + (50 - position) / 50;
+                position -= botStrength * difficulty;
+                rope.style.left = `${position}%`;
+
+                // Update bot strength over time
+                botStrength += 0.02;
+
+                if (position <= 30) {
+                    endGame(false);
+                }
+            }, 100);
+        }
+
+        function handleTap() {
+            if (!isGameActive) return;
+
+            tapCount++;
+            position += 1 + (tapCount * 0.01); // Progressive difficulty
+
+            tapCountDisplay.textContent = `Taps: ${tapCount}`;
+            rope.style.left = `${position}%`;
+
+            if (position >= 70) {
+                endGame(true);
+            }
+        }
+
+        function endGame(won = false) {
+            isGameActive = false;
+            clearTimeout(loseTimeout);
+            clearInterval(botInterval);
+            startButton.style.display = 'block';
+            startButton.disabled = false;
+
+            const resultMessage = document.getElementById('resultMessage');
+            const finalTaps = document.getElementById('finalTaps');
+
+            finalTaps.textContent = tapCount;
+            resultMessage.textContent = won ? 'You Win!' : 'Time Up! You Lose!';
+            resultModal.style.display = 'block';
+        }
+
+        function resetGame() {
+            resultModal.style.display = 'none';
+            position = 50;
+            rope.style.left = '50%';
+            tapCount = 0;
+            tapCountDisplay.textContent = 'Taps: 0';
+        }
+
+        document.getElementById('tapArea').addEventListener('click', handleTap);
+        document.getElementById('tapArea').addEventListener('touchstart', handleTap);
+
+        document.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+        }, { passive: false });
+
+        startButton.addEventListener('click', startGame);
+        document.addEventListener('click', handleTap);
+    </script>
+</body>
+
+</html>

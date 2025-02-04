@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tap Game</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Tap the Moving Target!</h1>
+    <p>Score: <span id="score">0</span></p>
+    <div id="game-container">
+        <div id="target"></div>
+    </div>
+    <p id="timer">Time Left: <span id="time">30</span> seconds</p>
+    <div id="win-popup">
+        <p id="prizeText"></p>
+        <button onclick="restartGame()">Restart</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
