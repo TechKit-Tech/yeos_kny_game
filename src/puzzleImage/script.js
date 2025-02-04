@@ -28,6 +28,7 @@ function createBoard() {
         tile.style.backgroundImage = `url(${imageUrl})`;
         tile.style.backgroundPosition = `${x}px ${y}px`;
 
+        tile.addEventListener("click", tileClick);
         tile.addEventListener("dragstart", dragStart);
         tile.addEventListener("dragover", dragOver);
         tile.addEventListener("drop", drop);
@@ -35,6 +36,31 @@ function createBoard() {
         board.appendChild(tile);
     });
     updateProgress();
+}
+
+function tileClick(event) {
+    const clickedTile = event.target;
+    if (selectedTile) {
+        if (selectedTile !== clickedTile) {
+            swapTiles(selectedTile, clickedTile);
+            selectedTile.classList.remove("selected");
+            selectedTile = null;
+        } else {
+            selectedTile.classList.remove("selected");
+            selectedTile = null;
+        }
+    } else {
+        selectedTile = clickedTile;
+        selectedTile.classList.add("selected");
+    }
+}
+
+function swapTiles(tile1, tile2) {
+    const index1 = tile1.dataset.index;
+    const index2 = tile2.dataset.index;
+    [tiles[index1], tiles[index2]] = [tiles[index2], tiles[index1]];
+    createBoard();
+    checkWin();
 }
 
 function dragStart(event) {
