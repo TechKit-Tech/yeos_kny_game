@@ -7,6 +7,8 @@ let tiles = Array.from({ length: 25 }, (_, i) => i);
 let imageUrl = selector.value;
 let selectedTile = null;
 
+let width = window.innerWidth;
+
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -15,6 +17,7 @@ function shuffle(array) {
 }
 
 function createBoard() {
+    console.log(`width = ${width} = (width % 5) ${Math.floor(width / 5)}`);
     board.innerHTML = "";
     referenceImage.style.backgroundImage = `url(${imageUrl})`;
     tiles.forEach((num, i) => {
@@ -24,8 +27,25 @@ function createBoard() {
         tile.dataset.index = i;
         tile.dataset.correctIndex = num;
 
-        const x = (num % 5) * -80;
-        const y = Math.floor(num / 5) * -80;
+        let x, y;
+        if (width >= 768) {
+            console.log(`   Big Screen`);
+            x = (num % 5) * -120;
+            y = Math.floor(num / 5) * -120;
+        }
+        // else if (width >= 768 && width <= 1024) { // Tablet range
+        //     console.log(`   Tablet Screen`);
+        //     x = (num % 5) * -100;
+        //     y = Math.floor(num / 5) * -100;
+        // } 
+        else { // Phone screen (width < 770)
+            console.log(`   Phone Screen`);
+            x = (num % 5) * -65;
+            y = Math.floor(num / 5) * -65;
+        }
+
+
+        // console.log(`   x = ${x} y = ${y}`);
         tile.style.backgroundImage = `url(${imageUrl})`;
         tile.style.backgroundPosition = `${x}px ${y}px`;
 
